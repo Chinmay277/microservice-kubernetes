@@ -8,7 +8,6 @@ services:
 
   postgres-db:
     image: postgres:15
-    container_name: postgres-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: user
@@ -19,7 +18,6 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
-    container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -28,7 +26,6 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:7.5.0
-    container_name: kafka
     depends_on:
       - zookeeper
     ports:
@@ -44,7 +41,6 @@ services:
 
   eureka-server:
     build: ./EurekaServer
-    container_name: eureka-server
     ports:
       - "8761:8761"
     networks:
@@ -52,7 +48,6 @@ services:
 
   api-gateway:
     build: ./API-Gateway
-    container_name: api-gateway
     ports:
       - "8001:8080"
     depends_on:
@@ -62,7 +57,6 @@ services:
 
   asset-service:
     build: ./Asset-Service
-    container_name: asset-service
     depends_on:
       - postgres-db
       - kafka
@@ -72,7 +66,6 @@ services:
 
   workforce-service:
     build: ./WorkForce-Service
-    container_name: workforce-service
     depends_on:
       - postgres-db
       - kafka
@@ -82,7 +75,6 @@ services:
 
   workorder-service:
     build: ./WorkOrderService
-    container_name: workorder-service
     depends_on:
       - postgres-db
       - kafka
@@ -92,7 +84,6 @@ services:
 
   notification-service:
     build: ./NotificationService
-    container_name: notification-service
     depends_on:
       - postgres-db
       - kafka
