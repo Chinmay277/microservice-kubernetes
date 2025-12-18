@@ -1,0 +1,19 @@
+# Eclipse / STS
+.metadata/
+.recommenders/
+*.log
+.project
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+target/
